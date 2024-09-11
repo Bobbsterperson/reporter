@@ -21,6 +21,7 @@
         {% for submission in submissions %}
             <li>
                 {{ submission.text }} - Submitted under {{ submission.journal.name }} on {{ submission.submitted_at|date:"F j, Y, g:i a" }}
+                <br> Tags: {{ submission.tags.all|join:", " }}
             </li>
         {% empty %}
             <p>No submissions yet.</p>

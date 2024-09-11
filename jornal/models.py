@@ -7,6 +7,12 @@ class Journal(models.Model):
     def __str__(self):
         return self.name
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class Submission(models.Model):
     text = models.CharField(max_length=255)
     submitted_at = models.DateTimeField(auto_now_add=True)
@@ -15,6 +21,7 @@ class Submission(models.Model):
         related_name='submissions',
         null=True
     )
+    tags = models.ManyToManyField(Tag, related_name='submissions', blank=True)
 
     def __str__(self):
         return self.text
