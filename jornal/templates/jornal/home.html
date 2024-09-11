@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Top Journalism</h1>
+    <p>All the latest news</p>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Submissions</h2>
+    <ul>
+        {% for submission in submissions %}
+            <li>
+                {{ submission.text }} -  {{ submission.submitted_at|date:"F j, Y, g:i a" }}
+            </li>
+        {% empty %}
+            <p>No submissions yet.</p>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
