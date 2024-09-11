@@ -9,21 +9,22 @@
 <body>
     <h1>Top Journalism</h1>
     <p>All the latest news</p>
+
     <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
+
     <h2>Submissions</h2>
     <ul>
         {% for submission in submissions %}
             <li>
-                {{ submission.text }} -  {{ submission.submitted_at|date:"F j, Y, g:i a" }}
+                {{ submission.text }} - Submitted under {{ submission.journal.name }} on {{ submission.submitted_at|date:"F j, Y, g:i a" }}
             </li>
         {% empty %}
             <p>No submissions yet.</p>
         {% endfor %}
     </ul>
-
 </body>
 </html>
